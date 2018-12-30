@@ -13,4 +13,3 @@ def test_it():
 	tree.insert(3)
 	tree.insert(4)
 	assert tree.min() == 1
-	assert tree.max() == 5

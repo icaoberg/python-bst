@@ -26,7 +26,6 @@ class BST:
                 node.setRight( Node(element) )
                 self.number_of_nodes = self.number_of_nodes + 1
             else:
-                print("Inserting to the right of " + str(node.get()))
                 self.__insert(node.getRight(), element)
 
             return
@@ -51,7 +50,7 @@ class BST:
         if self.isEmpty():
             return None
         else:
-            if self.root.isLeaf():
+            if self.root.isLeaf() or not self.root.hasLeft():
                 return self.root.get()
             else:
                 return self.__min(self.root.getLeft())
@@ -66,7 +65,7 @@ class BST:
         if self.isEmpty():
             return None
         else:
-            if self.root.isLeaf():
+            if self.root.isLeaf() or not self.root.hasRight():
                 return self.root.get()
             else:
                 return self.__max(self.root.getRight())
