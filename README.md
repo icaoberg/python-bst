@@ -1,4 +1,5 @@
 # python-bst
+![coverage.io](https://codecov.io/gh/icaoberg/python-bst/branch/master/graph/badge.svg)
 [![Build Status](https://travis-ci.org/icaoberg/python-bst.svg?branch=master)](https://travis-ci.org/icaoberg/python-bst)
 [![Release Status](https://img.shields.io/badge/release-v0.1-red.svg)](https://github.com/icaoberg/python-bst)
 [![GitHub issues](https://img.shields.io/github/issues/icaoberg/python-bst.svg)](https://github.com/icaoberg/python-bst/issues)
