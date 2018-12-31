@@ -8,12 +8,27 @@ class BST:
     number_of_invisible_nodes = 0
     
     def __init__(self):
+        '''
+        Default constructor
+        '''
+
         self.root = None
         self.number_of_nodes = 0
 
     def random(self, number_of_nodes):
+        '''
+        Populate BST with random integers.
+
+        :param number_of_nodes: positive integer
+        :return:
+        '''
+
         self.root = None
         self.number_of_nodes = 0
+
+        if number_of_nodes <= 0:
+            print('Number of nodes must be a positive number')
+            return
 
         elements = range(number_of_nodes)
         elements = random.sample(elements, len(elements))
@@ -22,9 +37,23 @@ class BST:
             self.insert(e)
 
     def getRoot(self):
+        '''
+        Returns the root node
+
+        :return: root node
+        '''
+
         return self.root
 
     def __insert(self, node, element):        
+        '''
+        Helper function for node insertion
+
+        :param node:
+        :param element:
+        :return:
+        '''
+
         if node.get() > element:
             #add to the left
             if not node.hasLeft():
@@ -47,6 +76,13 @@ class BST:
             return
 
     def insert(self, element):
+        '''
+        Inserts node into BST
+
+        :param element:
+        :return:
+        '''
+
         if self.root is None:
             self.root = Node( element )
             self.number_of_nodes = self.number_of_nodes + 1
@@ -54,15 +90,28 @@ class BST:
             self.__insert(self.root, element)
 
     def isEmpty(self):
+        '''
+        Check if BST is empty
+        :return: true if empty, false otherwise
+        '''
+
         if self.number_of_nodes == 0:
             return True
         else:
             return False
 
     def size(self):
+        '''
+        Returns size of BST
+        :return: number of nodes in BST
+        '''
         return self.number_of_nodes
 
     def min(self):
+        '''
+        Min value in BST
+        :return: minimum
+        '''
         if self.isEmpty():
             return None
         else:
@@ -72,12 +121,17 @@ class BST:
                 return self.__min(self.root.getLeft())
 
     def __min(self,node):
-        if node.isLeaf():
+        if node.isLeaf() or not node.hasLeft():
             return node.get()
         else:
             self.__min(node.getLeft())
 
     def max(self):
+        '''
+        Max value in BST
+
+        :return: minimum
+        '''
         if self.isEmpty():
             return None
         else:
@@ -87,12 +141,17 @@ class BST:
                 return self.__max(self.root.getRight())
 
     def __max(self,node):
-        if node.isLeaf():
+        if node.isLeaf() or not node.hasRight():
             return node.get()
         else:
             self.__max(node.getRight())
 
     def inorder(self):
+        '''
+        In order traversal
+
+        :return: in order array
+        '''
         self.traversal = []
         if self.isEmpty():
             return

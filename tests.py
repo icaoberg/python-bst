@@ -11,3 +11,5 @@ def test_it():
 	random.seed( 12345 )
 	number_of_nodes = 10
 	tree.random( number_of_nodes )
+	assert tree.min() == 0
+	assert tree.max() == 9
