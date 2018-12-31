@@ -10,9 +10,6 @@ This repo contains a very simple naive implementation of a [binary search tree](
 
 The purpose of this repo is to serve as an example on how to create a `.travis.yml` for [Travis CI](https://travis-ci.org/).
 
-## Implementation
-This implementation is based on a homework I did for 15-213 Advanced Data Structures and Algorithms in Java many years ago.
-
 ## Example
 
 ![BST](https://github.com/icaoberg/python-bst/blob/master/images/bst.png?raw=true)
@@ -30,3 +27,6 @@ tree = BST()
 tree.random( number_of_nodes )
 tree.tofigure().render('./images/bst', format='png')
 ```
+
+## Disclaimer
+This implementation is based on a homework I did for Carnegie Mellon's 15213 Advanced Data Structures and Algorithms in Java many years ago.
