@@ -30,10 +30,15 @@ tree.tofigure().render('./images/bst', format='png')
 ```
 
 ## Disclaimer
-This implementation is based on a homework I did for Carnegie Mellon's 15213 Advanced Data Structures and Algorithms in Java many years ago.
+This implementation is based on a homework I did for 15213 Advanced Data Structures and Algorithms in Java many years ago.
 
 As you can tell from the plot below, it is slow
 
 ![Insertions](https://github.com/icaoberg/python-bst/blob/master/images/insertion.png?raw=true)
 
 The plot above is showing average time (50 times for each run) from creating a BST.
+
+---
+[![CBD](http://www.cbd.cmu.edu/wp-content/uploads/2017/07/wordpress-default.png)](http://www.cbd.cmu.edu)
+
+Copyleft © 2018 [icaoberg](http://www.andrew.cmu.edu/~icaoberg) at the [Computational Biology Department](http://www.cbd.cmu.edu) in [Carnegie Mellon University](http://www.cmu.edu)
