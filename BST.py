@@ -5,8 +5,7 @@ import random
 class BST:
     traversal = None
     dot = None
-    list_of_nodes = set()
-    list_of_edges = set()
+    number_of_invisible_nodes = 0
     
     def __init__(self):
         self.root = None
@@ -112,6 +111,8 @@ class BST:
             self.__inorder(node.getRight())
             
     def tofigure(self, debug=False):
+        self.number_of_invisible_nodes = self.number_of_nodes + 1
+        
         if debug:
             print('Creating empty digraph')
             
@@ -131,12 +132,21 @@ class BST:
 
     def __tofigure(self, node):            
         if node.hasLeft():
-            self.dot.edges([str(node.get())+str(node.getLeft().get())])
+            self.dot.edge(str(node.get()),str(node.getLeft().get()))
             self.__tofigure(node.getLeft())
+        else:
+            self.dot.node(str(self.number_of_invisible_nodes), label='NULL', shape='square')
+            self.dot.edge(str(node.get()),str(self.number_of_invisible_nodes))
+            self.number_of_invisible_nodes = self.number_of_invisible_nodes + 1
 
         if node.has():
             self.dot.node(str(node.get()),str(node.get()))
 
         if node.hasRight():
-            self.dot.edges([str(node.get())+str(node.getRight().get())])
+            self.dot.edge(str(node.get()),str(node.getRight().get()))
             self.__tofigure(node.getRight())
+        else:
+            self.dot.node(str(self.number_of_invisible_nodes), label='NULL', shape='square')
+            self.dot.edge(str(node.get()),str(self.number_of_invisible_nodes))
+            self.number_of_invisible_nodes = self.number_of_invisible_nodes + 1
+                
