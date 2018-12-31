@@ -6,11 +6,27 @@
 [![GitHub stars](https://img.shields.io/github/stars/icaoberg/python-bst.svg)](https://github.com/icaoberg/python-bst/stargazers)
 [![GitHub license](https://img.shields.io/badge/license-GPLv3-blue.svg)](https://www.gnu.org/licenses/quick-guide-gplv3.en.html)
 
-![BST](https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Binary_search_tree.svg/1024px-Binary_search_tree.svg.png)
-
 This repo contains a very simple naive implementation of a [binary search tree](https://en.wikipedia.org/wiki/Binary_search_tree).
 
 The purpose of this repo is to serve as an example on how to create a `.travis.yml` for [Travis CI](https://travis-ci.org/).
 
 ## Implementation
 This implementation is based on a homework I did for 15-213 Advanced Data Structures and Algorithms in Java many years ago.
+
+## Example
+
+![BST]('./images/bst.png')
+
+```
+from BST import BST
+import random
+import graphviz
+import os
+
+random.seed( 12345 )
+
+number_of_nodes = 10
+tree = BST()
+tree.random( number_of_nodes )
+tree.tofigure().render('./images/bst', format='png')
+```

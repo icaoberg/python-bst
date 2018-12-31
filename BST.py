@@ -1,9 +1,26 @@
 from Node import Node
+from graphviz import Digraph
+import random
 
 class BST:
+    traversal = None
+    dot = None
+    list_of_nodes = set()
+    list_of_edges = set()
+    
     def __init__(self):
         self.root = None
         self.number_of_nodes = 0
+
+    def random(self, number_of_nodes):
+        self.root = None
+        self.number_of_nodes = 0
+
+        elements = range(number_of_nodes)
+        elements = random.sample(elements, len(elements))
+
+        for e in elements:
+            self.insert(e)
 
     def getRoot(self):
         return self.root
@@ -77,16 +94,49 @@ class BST:
             self.__max(node.getRight())
 
     def inorder(self):
+        self.traversal = []
         if self.isEmpty():
             return
         else:
             self.__inorder(self.root)
+            
+        return self.traversal
 
     def __inorder(self, node):
         if node.hasLeft():
             self.__inorder(node.getLeft())
 
-        print(node.get(), ' ')
+        self.traversal.append(node.get())
 
         if node.hasRight():
             self.__inorder(node.getRight())
+            
+    def tofigure(self, debug=False):
+        if debug:
+            print('Creating empty digraph')
+            
+        self.dot = Digraph('BST')
+            
+        if self.isEmpty():
+            if debug:
+                print('BST is empty')
+            return self.dot
+        else:
+            if debug:
+                print('Adding root node to digraph with value ' + str(self.root.get()) )
+            #self.dot.node(str(self.root.get()))
+            self.__tofigure(self.root)
+
+        return self.dot
+
+    def __tofigure(self, node):            
+        if node.hasLeft():
+            self.dot.edges([str(node.get())+str(node.getLeft().get())])
+            self.__tofigure(node.getLeft())
+
+        if node.has():
+            self.dot.node(str(node.get()),str(node.get()))
+
+        if node.hasRight():
+            self.dot.edges([str(node.get())+str(node.getRight().get())])
+            self.__tofigure(node.getRight())
