@@ -3,3 +3,4 @@ tabulate
 graphviz
 numpy
 coverage
+codecov
