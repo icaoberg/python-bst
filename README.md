@@ -31,7 +31,7 @@ tree.tofigure().render('./images/bst', format='png')
 ## Disclaimer
 This implementation is based on a homework I did for Carnegie Mellon's 15213 Advanced Data Structures and Algorithms in Java many years ago.
 
-As you can tell from the plot below, the performance is relatively slow
+As you can tell from the plot below, it is slow
 
 ![Insertions](https://github.com/icaoberg/python-bst/blob/master/images/insertion.png?raw=true)
 
