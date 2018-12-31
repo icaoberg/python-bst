@@ -5,9 +5,6 @@ python:
   - "3.5"
   - "3.6"
 
-env:
-  - CODECOV_TOKEN="ba91c047-099e-46d9-942d-6700a62e733c"
-
 # command to install dependencies
 install:
   - pip install -r requirements.txt
@@ -15,4 +12,4 @@ install:
 # command to run tests
 script:
   - nosetests --with-coverage tests.py
-  - codecov -t $CODECOV_TOKEN
+  - codecov
