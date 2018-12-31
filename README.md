@@ -15,7 +15,7 @@ This implementation is based on a homework I did for 15-213 Advanced Data Struct
 
 ## Example
 
-![BST]('https://github.com/icaoberg/python-bst/blob/master/images/bst.png?raw=true')
+![BST](https://github.com/icaoberg/python-bst/blob/master/images/bst.png?raw=true)
 
 ```
 from BST import BST
