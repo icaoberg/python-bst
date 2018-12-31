@@ -15,7 +15,7 @@ This implementation is based on a homework I did for 15-213 Advanced Data Struct
 
 ## Example
 
-![BST]('./images/bst.png')
+![BST]('./images/bst.png?raw=true')
 
 ```
 from BST import BST
