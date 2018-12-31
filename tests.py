@@ -8,8 +8,6 @@ def test_empty():
 
 def test_it():
 	tree = BST()
-	tree.insert(1)
-	tree.insert(5)
-	tree.insert(3)
-	tree.insert(4)
-	assert tree.min() == 1
+	random.seed( 12345 )
+	number_of_nodes = 10
+	tree.random( number_of_nodes )
