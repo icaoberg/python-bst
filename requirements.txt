@@ -2,3 +2,4 @@ nose
 tabulate
 graphviz
 numpy
+coverage
