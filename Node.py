@@ -1,89 +1,35 @@
 class Node:
     def __init__(self, value):
-        '''
-        Default constructor
-        :param value: node value
-        :type value: numeric
-        '''
-
         self.left = None
         self.right = None
         self.value = value
 
-    def hasLeft(self):
-        '''
-        Returns true if node has a left child
-        '''
+    def has_left(self):
+        return self.left is not None
 
-        if self.left is None:
-            return False
-        else:
-            return True
-
-    def setLeft(self, node):
-        '''
-        Set or replace left child
-        '''
-
+    def set_left(self, node):
         self.left = node
 
-    def getLeft(self):
-        '''
-        Get left child
-        '''
-
+    def get_left(self):
         return self.left
 
-    def hasRight(self):
-        '''
-        Returns true if node has a right child
-        '''
+    def has_right(self):
+        return self.right is not None
 
-        if self.right is None:
-            return False
-        else:
-            return True
-
-    def setRight(self, node):
-        '''
-        Set or replace right child
-        '''
-
+    def set_right(self, node):
         self.right = node
 
-    def getRight(self):
-        '''
-        Get right child
-        '''
-
+    def get_right(self):
         return self.right
 
-    def isLeaf(self):
-        '''
-        Returns true if node has no children
-        '''
-
-        if not self.hasLeft() and not self.hasRight():
-            return True
-        else:
-            return False
+    def is_leaf(self):
+        return not self.has_left() and not self.has_right()
 
     def get(self):
-        '''
-        Returns the value of the node
-        '''
-
         return self.value
 
-    def has(self):
-        if self.value is not None:
-            return True
-        else:
-            return False
-
-    def set(self,value):
-        '''
-        Sets the value of the node
-        '''
-
+    def set(self, value):
         self.value = value
+
+    def has(self):
+        return self.value is not None

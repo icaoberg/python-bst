@@ -1,6 +1,5 @@
-nose
-tabulate
+pytest
+pytest-cov
 graphviz
+tabulate
 numpy
-coverage
-codecov

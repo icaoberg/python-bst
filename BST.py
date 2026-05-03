@@ -3,209 +3,116 @@ from graphviz import Digraph
 import random
 
 class BST:
-    traversal = None
-    dot = None
-    number_of_invisible_nodes = 0
-    
     def __init__(self):
-        '''
-        Default constructor
-        '''
-
         self.root = None
         self.number_of_nodes = 0
 
     def random(self, number_of_nodes):
-        '''
-        Populate BST with random integers.
-
-        :param number_of_nodes: positive integer
-        :return:
-        '''
-
         self.root = None
         self.number_of_nodes = 0
 
         if number_of_nodes <= 0:
-            print('Number of nodes must be a positive number')
             return
 
-        elements = range(number_of_nodes)
-        elements = random.sample(elements, len(elements))
-
+        elements = random.sample(range(number_of_nodes), number_of_nodes)
         for e in elements:
             self.insert(e)
 
-    def getRoot(self):
-        '''
-        Returns the root node
-
-        :return: root node
-        '''
-
+    def get_root(self):
         return self.root
 
-    def __insert(self, node, element):        
-        '''
-        Helper function for node insertion
-
-        :param node:
-        :param element:
-        :return:
-        '''
-
-        if node.get() > element:
-            #add to the left
-            if not node.hasLeft():
-                #if left child is nonexistent
-                node.setLeft( Node(element) )
-                self.number_of_nodes = self.number_of_nodes + 1
-            else:
-                self.__insert(node.getLeft(), element)
-
-            return
-        else:
-            #add to the right
-            if not node.hasRight():
-                #if right child is nonexistent
-                node.setRight( Node(element) )
-                self.number_of_nodes = self.number_of_nodes + 1
-            else:
-                self.__insert(node.getRight(), element)
-
-            return
-
     def insert(self, element):
-        '''
-        Inserts node into BST
-
-        :param element:
-        :return:
-        '''
-
         if self.root is None:
-            self.root = Node( element )
-            self.number_of_nodes = self.number_of_nodes + 1
+            self.root = Node(element)
+            self.number_of_nodes += 1
         else:
             self.__insert(self.root, element)
 
-    def isEmpty(self):
-        '''
-        Check if BST is empty
-        :return: true if empty, false otherwise
-        '''
-
-        if self.number_of_nodes == 0:
-            return True
+    def __insert(self, node, element):
+        if node.get() > element:
+            if not node.has_left():
+                node.set_left(Node(element))
+                self.number_of_nodes += 1
+            else:
+                self.__insert(node.get_left(), element)
         else:
-            return False
+            if not node.has_right():
+                node.set_right(Node(element))
+                self.number_of_nodes += 1
+            else:
+                self.__insert(node.get_right(), element)
+
+    def is_empty(self):
+        return self.number_of_nodes == 0
 
     def size(self):
-        '''
-        Returns size of BST
-        :return: number of nodes in BST
-        '''
         return self.number_of_nodes
 
     def min(self):
-        '''
-        Min value in BST
-        :return: minimum
-        '''
-        if self.isEmpty():
+        if self.is_empty():
             return None
-        else:
-            if self.root.isLeaf() or not self.root.hasLeft():
-                return self.root.get()
-            else:
-                return self.__min(self.root.getLeft())
+        return self.__min(self.root)
 
-    def __min(self,node):
-        if node.isLeaf() or not node.hasLeft():
+    def __min(self, node):
+        if not node.has_left():
             return node.get()
-        else:
-            self.__min(node.getLeft())
+        return self.__min(node.get_left())
 
     def max(self):
-        '''
-        Max value in BST
-
-        :return: minimum
-        '''
-        if self.isEmpty():
+        if self.is_empty():
             return None
-        else:
-            if self.root.isLeaf() or not self.root.hasRight():
-                return self.root.get()
-            else:
-                return self.__max(self.root.getRight())
+        return self.__max(self.root)
 
-    def __max(self,node):
-        if node.isLeaf() or not node.hasRight():
+    def __max(self, node):
+        if not node.has_right():
             return node.get()
-        else:
-            self.__max(node.getRight())
+        return self.__max(node.get_right())
 
     def inorder(self):
-        '''
-        In order traversal
+        result = []
+        if not self.is_empty():
+            self.__inorder(self.root, result)
+        return result
 
-        :return: in order array
-        '''
-        self.traversal = []
-        if self.isEmpty():
-            return
-        else:
-            self.__inorder(self.root)
-            
-        return self.traversal
+    def __inorder(self, node, result):
+        if node.has_left():
+            self.__inorder(node.get_left(), result)
+        result.append(node.get())
+        if node.has_right():
+            self.__inorder(node.get_right(), result)
 
-    def __inorder(self, node):
-        if node.hasLeft():
-            self.__inorder(node.getLeft())
-
-        self.traversal.append(node.get())
-
-        if node.hasRight():
-            self.__inorder(node.getRight())
-            
     def tofigure(self, debug=False):
-        self.number_of_invisible_nodes = self.number_of_nodes + 1
-        
-        if debug:
-            print('Creating empty digraph')
-            
-        self.dot = Digraph('BST')
-            
-        if self.isEmpty():
-            if debug:
-                print('BST is empty')
-            return self.dot
-        else:
-            if debug:
-                print('Adding root node to digraph with value ' + str(self.root.get()) )
-            #self.dot.node(str(self.root.get()))
-            self.__tofigure(self.root)
+        self._invisible = self.number_of_nodes + 1
+        dot = Digraph('BST')
 
-        return self.dot
+        if self.is_empty():
+            return dot
 
-    def __tofigure(self, node):            
-        if node.hasLeft():
-            self.dot.edge(str(node.get()),str(node.getLeft().get()))
-            self.__tofigure(node.getLeft())
+        self.__tofigure(self.root, dot)
+        return dot
+
+    def __tofigure(self, node, dot):
+        if node.has_left():
+            dot.edge(str(node.get()), str(node.get_left().get()))
+            self.__tofigure(node.get_left(), dot)
         else:
-            self.dot.node(str(self.number_of_invisible_nodes), label='NULL', shape='square')
-            self.dot.edge(str(node.get()),str(self.number_of_invisible_nodes))
-            self.number_of_invisible_nodes = self.number_of_invisible_nodes + 1
+            dot.node(str(self._invisible), label='NULL', shape='square')
+            dot.edge(str(node.get()), str(self._invisible))
+            self._invisible += 1
 
         if node.has():
-            self.dot.node(str(node.get()),str(node.get()))
+            dot.node(str(node.get()), str(node.get()))
 
-        if node.hasRight():
-            self.dot.edge(str(node.get()),str(node.getRight().get()))
-            self.__tofigure(node.getRight())
+        if node.has_right():
+            dot.edge(str(node.get()), str(node.get_right().get()))
+            self.__tofigure(node.get_right(), dot)
         else:
-            self.dot.node(str(self.number_of_invisible_nodes), label='NULL', shape='square')
-            self.dot.edge(str(node.get()),str(self.number_of_invisible_nodes))
-            self.number_of_invisible_nodes = self.number_of_invisible_nodes + 1
-                
+            dot.node(str(self._invisible), label='NULL', shape='square')
+            dot.edge(str(node.get()), str(self._invisible))
+            self._invisible += 1
+
+    def __len__(self):
+        return self.number_of_nodes
+
+    def __repr__(self):
+        return f"BST(size={self.number_of_nodes}, inorder={self.inorder()})"
