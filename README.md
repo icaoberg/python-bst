@@ -100,7 +100,6 @@ pytest tests.py
 ```
 
 ## Support
-
 If you found this project helpful, consider buying me a coffee!
 
 [![Buy Me a Coffee](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/icaoberg)
